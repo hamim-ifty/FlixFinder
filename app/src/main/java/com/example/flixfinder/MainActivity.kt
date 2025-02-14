@@ -3,7 +3,11 @@ package com.example.flixfinder
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.flixfinder.presentation.screens.DetailScreen
 import com.example.flixfinder.presentation.screens.HomeScreen
+import com.example.flixfinder.presentation.screens.TvShowDetailScreen
 import com.example.flixfinder.ui.theme.FlixFinderTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +23,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FlixFinderTheme {
-                FlixFinderApp()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    FlixFinderApp()
+                }
             }
         }
     }
@@ -28,20 +38,43 @@ class MainActivity : ComponentActivity() {
 fun FlixFinderApp() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "home") {
+    NavHost(
+        navController = navController,
+        startDestination = "home"
+    ) {
         composable("home") {
             HomeScreen(
-                onNavigateToDetail = { id ->
-                    navController.navigate("detail/$id")
+                onNavigateToMovieDetail = { movieId ->
+                    navController.navigate("movie/$movieId")
+                },
+                onNavigateToTvDetail = { tvId ->
+                    navController.navigate("tv/$tvId")
                 }
             )
         }
+
+        // Movie details route
         composable(
-            "detail/{mediaId}",
-            arguments = listOf(navArgument("mediaId") { type = NavType.IntType })
+            route = "movie/{movieId}",
+            arguments = listOf(
+                navArgument("movieId") { type = NavType.IntType }
+            )
         ) { backStackEntry ->
             DetailScreen(
-                mediaId = backStackEntry.arguments?.getInt("mediaId") ?: 0,
+                movieId = backStackEntry.arguments?.getInt("movieId") ?: 0,
+                onBackPress = { navController.popBackStack() }
+            )
+        }
+
+        // TV Show details route
+        composable(
+            route = "tv/{tvId}",
+            arguments = listOf(
+                navArgument("tvId") { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            TvShowDetailScreen(
+                tvShowId = backStackEntry.arguments?.getInt("tvId") ?: 0,
                 onBackPress = { navController.popBackStack() }
             )
         }

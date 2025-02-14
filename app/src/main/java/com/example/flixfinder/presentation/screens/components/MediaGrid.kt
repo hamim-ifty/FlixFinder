@@ -5,8 +5,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.flixfinder.data.model.Movie
-import com.example.flixfinder.data.model.TvShow
+import com.example.flixfinder.data.Movie      // Add correct import
+import com.example.flixfinder.data.TvShow     // Add correct import
 
 @Composable
 fun MediaGrid(

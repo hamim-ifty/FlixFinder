@@ -10,11 +10,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flixfinder.common.UiState
 import com.example.flixfinder.presentation.screens.components.MediaGrid
 import com.example.flixfinder.presentation.screens.components.MediaTypeToggle
+import com.example.flixfinder.data.Movie
+import com.example.flixfinder.data.TvShow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    onNavigateToDetail: (Int) -> Unit,
+    onNavigateToMovieDetail: (Int) -> Unit,
+    onNavigateToTvDetail: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: MainViewModel = viewModel()
 ) {
@@ -49,7 +52,13 @@ fun HomeScreen(
                 is UiState.Success -> {
                     MediaGrid(
                         items = state.data,
-                        onItemClick = onNavigateToDetail
+                        onItemClick = { id ->
+                            when (state.data.firstOrNull()) {
+                                is Movie -> onNavigateToMovieDetail(id)
+                                is TvShow -> onNavigateToTvDetail(id)
+                                else -> {}
+                            }
+                        }
                     )
                 }
                 is UiState.Error -> {
