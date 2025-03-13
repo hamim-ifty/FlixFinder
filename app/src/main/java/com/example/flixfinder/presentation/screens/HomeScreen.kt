@@ -1,6 +1,8 @@
 package com.example.flixfinder.presentation.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,8 +24,23 @@ fun HomeScreen(
     viewModel: MainViewModel = viewModel()
 ) {
     var isMovieSelected by remember { mutableStateOf(true) }
+    var showDevInfo by remember { mutableStateOf(false) }
 
-    Scaffold { paddingValues ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("FlixFinder") },
+                actions = {
+                    IconButton(onClick = { showDevInfo = true }) {
+                        Icon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = "Developer Info"
+                        )
+                    }
+                }
+            )
+        }
+    ) { paddingValues ->
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -87,5 +104,40 @@ fun HomeScreen(
                 }
             }
         }
+
+        // Developer Info Dialog
+        if (showDevInfo) {
+            DeveloperInfoDialog(
+                onDismiss = { showDevInfo = false }
+            )
+        }
     }
+}
+
+@Composable
+fun DeveloperInfoDialog(onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text("Developer Information")
+        },
+        text = {
+            Column {
+                Text("FlixFinder")
+                Spacer(modifier = Modifier.height(8.dp))
+                Text("Version: 1.0.0")
+                Spacer(modifier = Modifier.height(8.dp))
+                Text("Developer: Hamim Ifty")
+                Spacer(modifier = Modifier.height(8.dp))
+                Text("Email: hifty24@students.oamk.fi")
+                Spacer(modifier = Modifier.height(8.dp))
+                Text("© 2025 All Rights Reserved")
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Close")
+            }
+        }
+    )
 }
