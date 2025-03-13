@@ -1,6 +1,5 @@
 package com.example.flixfinder.data
 
-// Movie models
 data class Movie(
     val id: Int,
     val title: String,
@@ -20,7 +19,6 @@ data class MovieDetail(
     val release_date: String
 )
 
-// Cast and Credits
 data class Cast(
     val id: Int,
     val name: String,
@@ -28,7 +26,6 @@ data class Cast(
     val profile_path: String?
 )
 
-// Video
 data class Video(
     val id: String,
     val key: String,
@@ -37,7 +34,6 @@ data class Video(
     val type: String
 )
 
-// API Response models
 data class MovieResponse(
     val page: Int,
     val results: List<Movie>

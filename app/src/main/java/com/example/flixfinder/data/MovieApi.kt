@@ -5,7 +5,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieApi {
-    // Movie endpoints
+
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("language") language: String = "en-US",
@@ -30,7 +30,6 @@ interface MovieApi {
         @Query("language") language: String = "en-US"
     ): VideoResponse
 
-    // TV Show endpoints
     @GET("tv/popular")
     suspend fun getPopularTvShows(
         @Query("language") language: String = "en-US",

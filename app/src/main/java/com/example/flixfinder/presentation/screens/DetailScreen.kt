@@ -19,9 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.example.flixfinder.data.Cast
-import com.example.flixfinder.data.MovieDetail
-import com.example.flixfinder.data.Video
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

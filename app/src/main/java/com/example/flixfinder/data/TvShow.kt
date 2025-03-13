@@ -1,6 +1,5 @@
 package com.example.flixfinder.data
 
-// Base TV Show model
 data class TvShow(
     val id: Int,
     val name: String,
@@ -10,7 +9,6 @@ data class TvShow(
     val vote_average: Double
 )
 
-// Detailed TV Show model
 data class TvShowDetail(
     val id: Int,
     val name: String,
@@ -22,7 +20,6 @@ data class TvShowDetail(
     val number_of_seasons: Int?
 )
 
-// Response models
 data class TvShowResponse(
     val page: Int,
     val results: List<TvShow>
