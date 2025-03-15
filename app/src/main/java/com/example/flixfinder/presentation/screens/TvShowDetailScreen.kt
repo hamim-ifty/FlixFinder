@@ -55,7 +55,7 @@ fun TvShowDetailScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            // Backdrop Image
+
             item {
                 tvShowDetail?.let { detail ->
                     AsyncImage(
@@ -86,7 +86,7 @@ fun TvShowDetailScreen(
                 }
             }
 
-            // Overview
+
             item {
                 Text(
                     text = "Overview",
@@ -99,7 +99,7 @@ fun TvShowDetailScreen(
                 )
             }
 
-            // Cast
+
             if (cast.isNotEmpty()) {
                 item {
                     Text(

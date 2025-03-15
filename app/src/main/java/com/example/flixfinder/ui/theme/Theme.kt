@@ -21,10 +21,10 @@ private val DarkColorScheme = darkColorScheme(
 
 @Composable
 fun FlixFinderTheme(
-    // Removed darkTheme parameter as it's not being used
+
     content: @Composable () -> Unit
 ) {
-    // Always use dark theme for Netflix-like appearance
+
     val colorScheme = DarkColorScheme
     val view = LocalView.current
 

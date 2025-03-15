@@ -2,10 +2,10 @@ package com.example.flixfinder.presentation.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.flixfinder.data.RetrofitClient  // Add correct import
-import com.example.flixfinder.data.Movie           // Add correct import
-import com.example.flixfinder.data.TvShow          // Add correct import
-import com.example.flixfinder.common.UiState       // Add UiState import
+import com.example.flixfinder.data.RetrofitClient
+import com.example.flixfinder.data.Movie
+import com.example.flixfinder.data.TvShow
+import com.example.flixfinder.common.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
